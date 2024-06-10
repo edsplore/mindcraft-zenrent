@@ -5,7 +5,7 @@ services:
     #   context: .
     #   dockerfile: Dockerfile.multi
     #   target: api-build
-    image: ghcr.io/edsplore/mindcraft-chat2@sha256:62dcdb5902a99223eff566d6696110a7feb4bb184788989f6170fbe91543e116
+    image: ghcr.io/edsplore/mindcraft-chat2:latest
     container_name: LibreChat-API
     ports:
       - 3080:3080
