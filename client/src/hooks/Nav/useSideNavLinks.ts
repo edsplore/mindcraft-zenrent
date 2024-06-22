@@ -42,13 +42,13 @@ export default function useSideNavLinks({
       keyProvided &&
       interfaceConfig.parameters
     ) {
-      links.push({
-        title: 'com_sidepanel_assistant_builder',
-        label: '',
-        icon: Blocks,
-        id: 'assistants',
-        Component: PanelSwitch,
-      });
+      // links.push({
+      //   title: 'com_sidepanel_assistant_builder',
+      //   label: '',
+      //   icon: Blocks,
+      //   id: 'assistants',
+      //   Component: PanelSwitch,
+      // });
     }
 
     links.push({
