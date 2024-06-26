@@ -66,7 +66,7 @@ export default function HeaderOptions({
     ? altSettings[endpoint]
     : () => setShowPopover((prev) => !prev);
   return (
-   {/* <Root
+    <Root
       open={showPopover}
       // onOpenChange={} //  called when the open state of the popover changes.
     >
@@ -132,8 +132,8 @@ export default function HeaderOptions({
               />
             )}
           </span>
-        </div>
+        </div>*/}
       </Anchor>
-    </Root> */}
+    </Root> 
   );
 }
