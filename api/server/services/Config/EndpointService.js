@@ -2,7 +2,7 @@ const { EModelEndpoint } = require('librechat-data-provider');
 const { isUserProvided, generateConfig } = require('~/server/utils');
 
 const {
-  OPENAI_API_KEY: openAIApiKey,
+  OPENAI_API_KEY_UPDATED: openAIApiKey,
   AZURE_ASSISTANTS_API_KEY: azureAssistantsApiKey,
   ASSISTANTS_API_KEY: assistantsApiKey,
   AZURE_API_KEY: azureOpenAIApiKey,

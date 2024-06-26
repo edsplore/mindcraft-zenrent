@@ -23,7 +23,7 @@
 #       BINGAI_TOKEN: user_provided
 #       CHATGPT_TOKEN: user_provided
 #       MONGO_URI: ${{ secrets.MONGO_URI }}
-#       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+#       OPENAI_API_KEY_UPDATED: ${{ secrets.OPENAI_API_KEY_UPDATED }}
 #       E2E_USER_EMAIL: ${{ secrets.E2E_USER_EMAIL }}
 #       E2E_USER_PASSWORD: ${{ secrets.E2E_USER_PASSWORD }}
 #       JWT_SECRET: ${{ secrets.JWT_SECRET }}

@@ -103,7 +103,7 @@ import OpenAI from 'openai';
 import { ChatCompletionStream } from 'openai/lib/ChatCompletionStream';
 
 export async function streamCompletion({ systemPrompt, messages }) {
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY_UPDATED });
   return client.beta.chat.completions.stream({
     model: 'gpt-4-0125-preview',
     messages: [{ role: 'system', content: systemPrompt }, ...messages],

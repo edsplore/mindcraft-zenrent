@@ -29,9 +29,9 @@ const { loadSpecs } = require('./loadSpecs');
 const { logger } = require('~/config');
 
 const getOpenAIKey = async (options, user) => {
-  let openAIApiKey = options.openAIApiKey ?? process.env.OPENAI_API_KEY;
+  let openAIApiKey = options.openAIApiKey ?? process.env.OPENAI_API_KEY_UPDATED;
   openAIApiKey = openAIApiKey === 'user_provided' ? null : openAIApiKey;
-  return openAIApiKey || (await getUserPluginAuthValue(user, 'OPENAI_API_KEY'));
+  return openAIApiKey || (await getUserPluginAuthValue(user, 'OPENAI_API_KEY_UPDATED'));
 };
 
 /**
@@ -201,9 +201,9 @@ const loadTools = async ({
       });
     },
     'web-browser': async () => {
-      // let openAIApiKey = options.openAIApiKey ?? process.env.OPENAI_API_KEY;
+      // let openAIApiKey = options.openAIApiKey ?? process.env.OPENAI_API_KEY_UPDATED;
       // openAIApiKey = openAIApiKey === 'user_provided' ? null : openAIApiKey;
-      // openAIApiKey = openAIApiKey || (await getUserPluginAuthValue(user, 'OPENAI_API_KEY'));
+      // openAIApiKey = openAIApiKey || (await getUserPluginAuthValue(user, 'OPENAI_API_KEY_UPDATED'));
       const browser = new WebBrowser({ model, embeddings: new OpenAIEmbeddings({ openAIApiKey }) });
       browser.description_for_model = browser.description;
       return browser;

@@ -76,7 +76,7 @@
     "icon": "/assets/web-browser.svg",
     "authConfig": [
       {
-        "authField": "OPENAI_API_KEY",
+        "authField": "OPENAI_API_KEY_UPDATED",
         "label": "OpenAI API Key",
         "description": "Browser makes use of OpenAI embeddings"
       }

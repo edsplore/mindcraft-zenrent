@@ -66,9 +66,9 @@ let env = {};
   const title = await askQuestion('Enter the app title (default: "LibreChat"): ');
   env['APP_TITLE'] = title || 'Help Joseph AI';
 
-  // Ask for OPENAI_API_KEY
-  const key = await askQuestion('Enter your OPENAI_API_KEY (default: "user_provided"): ');
-  env['OPENAI_API_KEY'] = key || 'user_provided';
+  // Ask for OPENAI_API_KEY_UPDATED
+  const key = await askQuestion('Enter your OPENAI_API_KEY_UPDATED (default: "user_provided"): ');
+  env['OPENAI_API_KEY_UPDATED'] = key || 'user_provided';
 
   // Ask about mongodb
   const mongodb = await askQuestion(

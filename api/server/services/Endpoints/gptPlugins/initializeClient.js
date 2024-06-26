@@ -11,7 +11,7 @@ const { PluginsClient } = require('~/app');
 const initializeClient = async ({ req, res, endpointOption }) => {
   const {
     PROXY,
-    OPENAI_API_KEY,
+    OPENAI_API_KEY_UPDATED,
     AZURE_API_KEY,
     PLUGINS_USE_AZURE,
     OPENAI_REVERSE_PROXY,
@@ -35,7 +35,7 @@ const initializeClient = async ({ req, res, endpointOption }) => {
   }
 
   const credentials = {
-    [EModelEndpoint.openAI]: OPENAI_API_KEY,
+    [EModelEndpoint.openAI]: OPENAI_API_KEY_UPDATED,
     [EModelEndpoint.azureOpenAI]: AZURE_API_KEY,
   };
 

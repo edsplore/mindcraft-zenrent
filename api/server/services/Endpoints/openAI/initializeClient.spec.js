@@ -90,7 +90,7 @@ describe('initializeClient', () => {
   });
 
   test('should initialize client with OpenAI API key and default options', async () => {
-    process.env.OPENAI_API_KEY = 'test-openai-api-key';
+    process.env.OPENAI_API_KEY_UPDATED = 'test-openai-api-key';
     process.env.DEBUG_OPENAI = 'false';
     process.env.OPENAI_SUMMARIZE = 'false';
 
@@ -115,7 +115,7 @@ describe('initializeClient', () => {
     (process.env.AZURE_OPENAI_API_VERSION = 'some-value'),
     (process.env.AZURE_OPENAI_API_COMPLETIONS_DEPLOYMENT_NAME = 'some-value'),
     (process.env.AZURE_OPENAI_API_EMBEDDINGS_DEPLOYMENT_NAME = 'some-value'),
-    (process.env.OPENAI_API_KEY = 'test-openai-api-key');
+    (process.env.OPENAI_API_KEY_UPDATED = 'test-openai-api-key');
     process.env.DEBUG_OPENAI = 'false';
     process.env.OPENAI_SUMMARIZE = 'false';
 
@@ -134,7 +134,7 @@ describe('initializeClient', () => {
   });
 
   test('should use the debug option when DEBUG_OPENAI is enabled', async () => {
-    process.env.OPENAI_API_KEY = 'test-openai-api-key';
+    process.env.OPENAI_API_KEY_UPDATED = 'test-openai-api-key';
     process.env.DEBUG_OPENAI = 'true';
 
     const req = {
@@ -151,7 +151,7 @@ describe('initializeClient', () => {
   });
 
   test('should set contextStrategy to summarize when OPENAI_SUMMARIZE is enabled', async () => {
-    process.env.OPENAI_API_KEY = 'test-openai-api-key';
+    process.env.OPENAI_API_KEY_UPDATED = 'test-openai-api-key';
     process.env.OPENAI_SUMMARIZE = 'true';
 
     const req = {
@@ -168,7 +168,7 @@ describe('initializeClient', () => {
   });
 
   test('should set reverseProxyUrl and proxy when they are provided in the environment', async () => {
-    process.env.OPENAI_API_KEY = 'test-openai-api-key';
+    process.env.OPENAI_API_KEY_UPDATED = 'test-openai-api-key';
     process.env.OPENAI_REVERSE_PROXY = 'http://reverse.proxy';
     process.env.PROXY = 'http://proxy';
 
@@ -187,7 +187,7 @@ describe('initializeClient', () => {
   });
 
   test('should throw an error if the user-provided key has expired', async () => {
-    process.env.OPENAI_API_KEY = 'user_provided';
+    process.env.OPENAI_API_KEY_UPDATED = 'user_provided';
     process.env.AZURE_API_KEY = 'user_provided';
     process.env.DEBUG_OPENAI = 'false';
     process.env.OPENAI_SUMMARIZE = 'false';
@@ -208,7 +208,7 @@ describe('initializeClient', () => {
 
   test('should throw an error if no API keys are provided in the environment', async () => {
     // Clear the environment variables for API keys
-    delete process.env.OPENAI_API_KEY;
+    delete process.env.OPENAI_API_KEY_UPDATED;
     delete process.env.AZURE_API_KEY;
 
     const req = {
@@ -241,7 +241,7 @@ describe('initializeClient', () => {
     const endpointOption = {};
 
     // Ensure the environment variable is set to 'user_provided' to match the isUserProvided condition
-    process.env.OPENAI_API_KEY = 'user_provided';
+    process.env.OPENAI_API_KEY_UPDATED = 'user_provided';
 
     // Mock getUserKey to return the expected key
     getUserKeyValues.mockResolvedValue({ apiKey: 'test-user-provided-openai-api-key' });
@@ -264,7 +264,7 @@ describe('initializeClient', () => {
     const endpointOption = {};
 
     // Ensure the environment variable is set to 'user_provided' to match the isUserProvided condition
-    process.env.OPENAI_API_KEY = 'user_provided';
+    process.env.OPENAI_API_KEY_UPDATED = 'user_provided';
 
     // Mock getUserKey to return an invalid key
     getUserKey.mockResolvedValue(invalidKey);
@@ -275,7 +275,7 @@ describe('initializeClient', () => {
   });
 
   test('should throw an error when user-provided values are not valid JSON', async () => {
-    process.env.OPENAI_API_KEY = 'user_provided';
+    process.env.OPENAI_API_KEY_UPDATED = 'user_provided';
     const req = {
       body: { key: new Date(Date.now() + 10000).toISOString(), endpoint: EModelEndpoint.openAI },
       user: { id: '123' },
@@ -333,7 +333,7 @@ describe('initializeClient', () => {
   test('should initialize client with default options when certain env vars are not set', async () => {
     delete process.env.DEBUG_OPENAI;
     delete process.env.OPENAI_SUMMARIZE;
-    process.env.OPENAI_API_KEY = 'some-api-key';
+    process.env.OPENAI_API_KEY_UPDATED = 'some-api-key';
 
     const req = {
       body: { key: null, endpoint: EModelEndpoint.openAI },
@@ -350,7 +350,7 @@ describe('initializeClient', () => {
   });
 
   test('should correctly use user-provided apiKey and baseURL when provided', async () => {
-    process.env.OPENAI_API_KEY = 'user_provided';
+    process.env.OPENAI_API_KEY_UPDATED = 'user_provided';
     process.env.OPENAI_REVERSE_PROXY = 'user_provided';
     const req = {
       body: {

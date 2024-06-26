@@ -126,7 +126,7 @@ loader.addSecureEnvVar(rootEnvPath, 'CREDS_IV', 16);
 loader.addSecureEnvVar(rootEnvPath, 'JWT_SECRET', 32);
 
 // Lets update the openai key name, not the best spot in the env file but who cares ¯\_(ツ)_/¯
-loader.writeEnvFile(rootEnvPath, { OPENAI_API_KEY: initEnv['OPENAI_KEY'] });
+loader.writeEnvFile(rootEnvPath, { OPENAI_API_KEY_UPDATED: initEnv['OPENAI_KEY'] });
 
 // TODO: we need to copy over the value of: APP_TITLE
 fs.appendFileSync(

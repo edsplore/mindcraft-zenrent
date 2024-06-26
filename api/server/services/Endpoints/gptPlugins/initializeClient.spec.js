@@ -91,7 +91,7 @@ describe('gptPlugins/initializeClient', () => {
   });
 
   test('should initialize PluginsClient with OpenAI API key and default options', async () => {
-    process.env.OPENAI_API_KEY = 'test-openai-api-key';
+    process.env.OPENAI_API_KEY_UPDATED = 'test-openai-api-key';
     process.env.PLUGINS_USE_AZURE = 'false';
     process.env.DEBUG_PLUGINS = 'false';
     process.env.OPENAI_SUMMARIZE = 'false';
@@ -136,7 +136,7 @@ describe('gptPlugins/initializeClient', () => {
   });
 
   test('should use the debug option when DEBUG_PLUGINS is enabled', async () => {
-    process.env.OPENAI_API_KEY = 'test-openai-api-key';
+    process.env.OPENAI_API_KEY_UPDATED = 'test-openai-api-key';
     process.env.DEBUG_PLUGINS = 'true';
 
     const req = {
@@ -153,7 +153,7 @@ describe('gptPlugins/initializeClient', () => {
   });
 
   test('should set contextStrategy to summarize when OPENAI_SUMMARIZE is enabled', async () => {
-    process.env.OPENAI_API_KEY = 'test-openai-api-key';
+    process.env.OPENAI_API_KEY_UPDATED = 'test-openai-api-key';
     process.env.OPENAI_SUMMARIZE = 'true';
 
     const req = {
@@ -173,7 +173,7 @@ describe('gptPlugins/initializeClient', () => {
 
   test('should throw an error if no API keys are provided in the environment', async () => {
     // Clear the environment variables for API keys
-    delete process.env.OPENAI_API_KEY;
+    delete process.env.OPENAI_API_KEY_UPDATED;
     delete process.env.AZURE_API_KEY;
 
     const req = {
@@ -194,7 +194,7 @@ describe('gptPlugins/initializeClient', () => {
   // ... (previous test setup code)
 
   test('should handle user-provided OpenAI keys and check expiry', async () => {
-    process.env.OPENAI_API_KEY = 'user_provided';
+    process.env.OPENAI_API_KEY_UPDATED = 'user_provided';
     process.env.PLUGINS_USE_AZURE = 'false';
 
     const futureDate = new Date(Date.now() + 10000).toISOString();
@@ -239,7 +239,7 @@ describe('gptPlugins/initializeClient', () => {
   });
 
   test('should throw an error if the user-provided key has expired', async () => {
-    process.env.OPENAI_API_KEY = 'user_provided';
+    process.env.OPENAI_API_KEY_UPDATED = 'user_provided';
     process.env.PLUGINS_USE_AZURE = 'FALSE';
     const expiresAt = new Date(Date.now() - 10000).toISOString(); // Expired
     const req = {
@@ -291,7 +291,7 @@ describe('gptPlugins/initializeClient', () => {
   test('should correctly handle the presence of a reverse proxy', async () => {
     process.env.OPENAI_REVERSE_PROXY = 'http://reverse.proxy';
     process.env.PROXY = 'http://proxy';
-    process.env.OPENAI_API_KEY = 'test-openai-api-key';
+    process.env.OPENAI_API_KEY_UPDATED = 'test-openai-api-key';
 
     const req = {
       body: { key: null },
@@ -308,7 +308,7 @@ describe('gptPlugins/initializeClient', () => {
   });
 
   test('should throw an error when user-provided values are not valid JSON', async () => {
-    process.env.OPENAI_API_KEY = 'user_provided';
+    process.env.OPENAI_API_KEY_UPDATED = 'user_provided';
     const req = {
       body: { key: new Date(Date.now() + 10000).toISOString(), endpoint: 'openAI' },
       user: { id: '123' },
@@ -366,7 +366,7 @@ describe('gptPlugins/initializeClient', () => {
 
   test('should initialize client with default options when certain env vars are not set', async () => {
     delete process.env.OPENAI_SUMMARIZE;
-    process.env.OPENAI_API_KEY = 'some-api-key';
+    process.env.OPENAI_API_KEY_UPDATED = 'some-api-key';
 
     const req = {
       body: { key: null, endpoint: EModelEndpoint.gptPlugins },
@@ -381,7 +381,7 @@ describe('gptPlugins/initializeClient', () => {
   });
 
   test('should correctly use user-provided apiKey and baseURL when provided', async () => {
-    process.env.OPENAI_API_KEY = 'user_provided';
+    process.env.OPENAI_API_KEY_UPDATED = 'user_provided';
     process.env.OPENAI_REVERSE_PROXY = 'user_provided';
     const req = {
       body: {
