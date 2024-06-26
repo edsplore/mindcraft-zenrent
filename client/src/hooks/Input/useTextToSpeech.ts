@@ -15,7 +15,7 @@ const useTextToSpeech = (message: TMessage, isLast: boolean, index = 0) => {
     generateSpeechLocal: generateSpeechLocal,
     cancelSpeechLocal: cancelSpeechLocal,
     isSpeaking: isSpeakingLocal,
-  } = useTextToSpeechBrowser();
+  } = useTextToSpeechExternal();
 
   const {
     generateSpeechExternal: generateSpeechExternal,
