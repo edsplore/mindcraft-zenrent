@@ -2,17 +2,33 @@ import { useRef } from 'react';
 import { parseTextParts } from 'librechat-data-provider';
 import type { TMessage } from 'librechat-data-provider';
 import useTextToSpeechExternal from './useTextToSpeechExternal';
+import useTextToSpeechBrowser from './useTextToSpeechBrowser';
 import { usePauseGlobalAudio } from '../Audio';
+import { useRecoilState } from 'recoil';
+import store from '~/store';
 
 const useTextToSpeech = (message: TMessage, isLast: boolean, index = 0) => {
+  const [endpointTTS] = useRecoilState<string>(store.endpointTTS);
+  const useExternalTextToSpeech = endpointTTS === 'external';
+
   const {
-    generateSpeechExternal,
-    cancelSpeech,
-    isSpeaking,
-    isLoading,
+    generateSpeechLocal: generateSpeechLocal,
+    cancelSpeechLocal: cancelSpeechLocal,
+    isSpeaking: isSpeakingLocal,
+  } = useTextToSpeechBrowser();
+
+  const {
+    generateSpeechExternal: generateSpeechExternal,
+    cancelSpeech: cancelSpeechExternal,
+    isSpeaking: isSpeakingExternal,
+    isLoading: isLoading,
     audioRef,
   } = useTextToSpeechExternal(message.messageId, isLast, index);
   const { pauseGlobalAudio } = usePauseGlobalAudio(index);
+
+  const generateSpeech = useExternalTextToSpeech ? generateSpeechExternal : generateSpeechLocal;
+  const cancelSpeech = useExternalTextToSpeech ? cancelSpeechExternal : cancelSpeechLocal;
+  const isSpeaking = useExternalTextToSpeech ? isSpeakingExternal : isSpeakingLocal;
 
   const isMouseDownRef = useRef(false);
   const timerRef = useRef<number | undefined>(undefined);
@@ -24,7 +40,7 @@ const useTextToSpeech = (message: TMessage, isLast: boolean, index = 0) => {
         const messageContent = message?.content ?? message?.text ?? '';
         const parsedMessage =
           typeof messageContent === 'string' ? messageContent : parseTextParts(messageContent);
-        generateSpeechExternal(parsedMessage, false);
+        generateSpeech(parsedMessage, false);
       }
     }, 1000);
   };
@@ -45,7 +61,7 @@ const useTextToSpeech = (message: TMessage, isLast: boolean, index = 0) => {
       const messageContent = message?.content ?? message?.text ?? '';
       const parsedMessage =
         typeof messageContent === 'string' ? messageContent : parseTextParts(messageContent);
-      generateSpeechExternal(parsedMessage, false);
+      generateSpeech(parsedMessage, false);
     }
   };
 

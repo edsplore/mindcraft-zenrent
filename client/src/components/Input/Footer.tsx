@@ -13,7 +13,7 @@ export default function Footer() {
       ) : (
         <>
           <a href="https://librechat.ai" target="_blank" rel="noreferrer" className="underline">
-            {config?.appTitle || 'LibreChat'} {Constants.VERSION}
+            {config?.appTitle || 'Globe United'} {Constants.VERSION}
           </a>
           {' - '}. {localize('com_ui_pay_per_call')}
         </>
