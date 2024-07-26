@@ -37,7 +37,7 @@ export default function StartupLayout({ isAuthenticated }: { isAuthenticated?: b
   }, [isAuthenticated, navigate, data]);
 
   useEffect(() => {
-    document.title = startupConfig?.appTitle || 'Globe United';
+    document.title = startupConfig?.appTitle || 'Zen Rent';
   }, [startupConfig?.appTitle]);
 
   useEffect(() => {
